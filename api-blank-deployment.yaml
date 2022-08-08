@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-blank-web
+spec:
+  selector:
+    matchLabels:
+      app: api-blank-web
+  template:
+    metadata:
+      labels:
+        app: api-blank-web
+    spec:
+      containers:
+        - name: api
+          image: rjtmalik/docker_go_demo:v1

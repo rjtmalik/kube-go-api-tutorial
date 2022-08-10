@@ -4,8 +4,8 @@ metadata:
   name: api-blank-web
 spec:
   ports:
-    - port: 8000
-      targetPort: 8000
+    - port: 8001
+      targetPort: 8001
   selector:
     app: api-blank-web
   type: LoadBalancer

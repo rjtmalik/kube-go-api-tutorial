@@ -3,17 +3,35 @@ package main
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+	"kube-go-api-tutorial/db/models"
+	"kube-go-api-tutorial/handlers"
 	"log"
 	"net/http"
 	"time"
 )
 
 func main(){
+	//setup db
+	db, err:= gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
+	if err!=nil{
+		panic("failed to connect database")
+	}
+
+	db.AutoMigrate(&models.Product{})
+
+	//Handlers
+	productHandler := handlers.ProductHandler{Db: db}
+
+	// setup router
 	r := mux.NewRouter()
-	r.HandleFunc("/", HomeHandler)
+	r.HandleFunc("/products/1", productHandler.GetProductRequestHandler)
+	r.HandleFunc("/products", productHandler.CreateProductHandler)
+
 	srv:= &http.Server{
 		Handler: r,
-		Addr: ":8000",
+		Addr: ":8001",
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout: 15 * time.Second,
 	}

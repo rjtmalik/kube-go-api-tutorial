@@ -13,4 +13,4 @@ spec:
     spec:
       containers:
         - name: api
-          image: rjtmalik/docker_go_demo:v1
+          image: rjtmalik/docker_go_demo:v1.1

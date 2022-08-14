@@ -2,6 +2,7 @@
 This repository is the continuous tutorial I am providing myself on deploying a go service into the clooud
 
 # Completed(Reverse Chronological order):
+* Add tests for endpoints and mock the database hits
 * Create and Read with database
 * Write Kubernetes configuration to run the static endpoint
 * Push the image to docker hub 
@@ -9,9 +10,9 @@ This repository is the continuous tutorial I am providing myself on deploying a 
 * Create a Service that has a single GET endpoint at port 8001
 
 # TODO:
+* Read Db connection string from the ConfigMap
 * Add contract Tests for POST endpoint
 * Add contract Tests for GET endpoint
-* Read Db connection string from the ConfigMap
 * Update to Go standard template
 * Deploy on AWS
 
@@ -25,11 +26,11 @@ This repository is the continuous tutorial I am providing myself on deploying a 
 # Setup
 * Clone the repo
 * Build the image
-```$ docker build -t api_blank:v1.1```
+```$ docker build -t api_blank:v1.2 .```
 * Publish to Docker hub
    ```
-   $ docker tag api_blank:v1.1 rjtmalik/docker_go_demo:v1.1
-   $ docker push rjtmalik/docker_go_demo:v1.1
+   $ docker tag api_blank:v1.2 rjtmalik/docker_go_demo:v1.2
+   $ docker push rjtmalik/docker_go_demo:v1.2
    ```
 
 # Debug 

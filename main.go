@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm"
 	"kube-go-api-tutorial/db/models"
 	"kube-go-api-tutorial/handlers"
+	"kube-go-api-tutorial/repository"
 	"log"
 	"net/http"
 	"time"
@@ -21,8 +22,11 @@ func main(){
 
 	db.AutoMigrate(&models.Product{})
 
+	//Repository
+	productRepo := repository.ProductRepository{Db: db}
+
 	//Handlers
-	productHandler := handlers.ProductHandler{Db: db}
+	productHandler := handlers.ProductHandler{DbReader: productRepo, DbWriter: productRepo}
 
 	// setup router
 	r := mux.NewRouter()
